@@ -7,7 +7,35 @@ $line-space: 22px;
   font-weight: 400;
   font-size: 14px;
   overflow-x: hidden;
-  color: #333;
+
+  color: #4f4f4f;
+
+  // 标题
+  $h2Color: #eea20a;
+  $h2ColorBef:#ed8c2c;
+  $h3Color: #555cbe;
+  $h4Color: #4f4f4f;
+
+  // 重点
+  $strongA: #fa6069;
+  $strongB: #ff33ca;
+  $strongC: #de42bc;
+  $strongD: #4c9800;
+
+  // 代码高亮及背景
+  // c7254e;
+  $heightColor:#4c9800;
+  $backHeightColor: #fff;
+  // #fff5f5
+
+  // a 标签
+  $aColor: #4ea1db;
+  $aColorEd: #275b8c;
+
+
+
+
+
 
   h1,
   h2,
@@ -30,7 +58,7 @@ $line-space: 22px;
   h2 {
     counter-reset: h2counter;
     font-size: 20px;
-    color: #eea20a;
+    color: $h2Color;
     padding-bottom: 10px;
     margin-bottom: 15px;
     // border-bottom: 1px solid #ececec;
@@ -40,7 +68,7 @@ $line-space: 22px;
   h3 {
     counter-reset: h3counter;
     font-size: 18px;
-    color: #555cbe;
+    color: $h3Color;
     // padding-bottom: 0;
   }
 
@@ -48,46 +76,47 @@ $line-space: 22px;
   h4 {
     counter-reset: h4counter;
     font-size: 16px;
-    color: #4f4f4f;
+    color: $h4Color;
   }
 
   h5,
   h6 {
     font-size: 14px;
-    color: #4f4f4f;
+    color: $h4Color;
   }
 
   // 模拟
 
   h2:before {
-    color: rgb(237, 140, 44);
+    color: $h2ColorBef;
     counter-increment: h2counter;
-    content:"🍲 "  counter(h2counter);
+    content: counter(h2counter)"\0000a0\0000a0\0000a0";
   }
 
   h3:before {
     counter-increment: h3counter;
-    content:"🍲 " counter(h2counter) "." counter(h3counter);
+    content: "🍲\0000a0\0000a0" counter(h2counter) "." counter(h3counter);
   }
 
   h4:before {
     content: "( 🍲 )";
   }
+
   // ❤
   h5:before {
-    content:"\0000a0\0000a0🍦"
+    content: "\0000a0\0000a0🍦"
   }
 
   h6:before {
-    content:"( 🍦 )"
+    content: "( 🍦 )"
   }
 
-  h2::before,
+  // h2::before,
   h3::before,
   h4::before,
   h5::before,
   h6::before {
-    width: 65px;
+    width: 70px;
     display: inline-block;
   }
 
@@ -102,10 +131,22 @@ $line-space: 22px;
     margin-top: $line-space;
     margin-bottom: $line-space;
 
-    strong{
-      color: #fa6069;
+  }
+
+  strong {
+    color: $strongA;
+    font-weight: normal;
+  }
+
+  em {
+    color: $strongD;
+    font-style: normal;
+
+    strong {
+      color: $strongB;
     }
   }
+
 
   img {
     max-width: 100%;
@@ -125,8 +166,9 @@ $line-space: 22px;
     word-break: break-word;
     border-radius: 2px;
     overflow-x: auto;
-    background-color: #fff5f5;
-    color: #c7254e;
+    background-color: $backHeightColor;
+    color:$heightColor;
+    font-weight: bold;
     font-size: 0.87em;
     padding: 0.065em 0.4em;
   }
@@ -151,12 +193,12 @@ $line-space: 22px;
 
   a {
     text-decoration: none;
-    color: #4ea1db;
+    color: $aColor;
     border-bottom: 1px solid #d1e9ff;
 
     &:hover,
     &:active {
-      color: #275b8c;
+      color: $aColorEd;
     }
   }
 
@@ -166,7 +208,7 @@ $line-space: 22px;
     width: auto;
     max-width: 100%;
     overflow: auto;
-    border: solid 1px #f6f6f6;
+    border-collapse: collapse;
   }
 
   thead {
@@ -183,6 +225,7 @@ $line-space: 22px;
   td {
     padding: 12px 7px;
     line-height: 24px;
+    border: #e0e0e0 solid 1px;
   }
 
   td {
@@ -240,6 +283,61 @@ $line-space: 22px;
 
   .task-list-item {
     list-style: none;
+  }
+
+  input[type=checkbox] {
+    cursor: pointer;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    font-size: 14px;
+    border-radius: 2px;
+
+    &::before {
+      
+      content: "";
+      position: absolute;
+      // top: 0;
+      // left: 0;
+      // right: 0;
+      // bottom: 0;
+      width: inherit;
+      height: inherit;
+      background: #FFF;
+      border: 1px solid $h3Color;
+      border-radius: 2px;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    // &::after {
+    //   border: none;
+    //   width: 15px;
+    //   height: 15px;
+    //   display: inline-block;
+    //   visibility: visible;
+    //   padding-left: 0px;
+    //   text-align: center;
+    //   content: ' ';
+    //   border-radius: 1px;
+    //   color: $strongA;
+    //   background-color: #fff;
+    //   border: #ffba92 solid 1px;
+    // }
+
+    &:checked::after {
+      position: absolute;
+      top: -10px;
+      left: 0px;
+      // right: 0;
+      // bottom: 0;
+      content: "✓";
+      color: $strongA;
+      font-size: 22px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
   }
 
   @media (max-width: 720px) {
