@@ -1,5 +1,6 @@
 $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
 $line-space: 22px;
+$lrPadding: 0 2px;
 
 .markdown-body {
   word-break: break-word;
@@ -7,6 +8,7 @@ $line-space: 22px;
   font-weight: 400;
   font-size: 14px;
   overflow-x: hidden;
+  letter-spacing: 2px;
 
   color: #4f4f4f;
 
@@ -135,15 +137,17 @@ $line-space: 22px;
 
   strong {
     color: $strongA;
-    font-weight: normal;
+    padding: $lrPadding;
   }
 
   em {
     color: $strongD;
     font-style: normal;
+    padding: $lrPadding;
 
     strong {
       color: $strongB;
+      padding: 0;
     }
   }
 
@@ -168,10 +172,11 @@ $line-space: 22px;
     overflow-x: auto;
     background-color: $backHeightColor;
     color:$heightColor;
-    font-weight: bold;
-    font-size: 0.87em;
+    // font-size: 0.87em;
     padding: 0.065em 0.4em;
   }
+
+  
 
   pre {
     font-family: $monospace-font;
@@ -180,7 +185,7 @@ $line-space: 22px;
     line-height: 1.75;
 
     >code {
-      font-size: 12px;
+      font-size: 14px;
       padding: 15px 12px;
       margin: 0;
       word-break: normal;
@@ -204,7 +209,7 @@ $line-space: 22px;
 
   table {
     display: inline-block !important;
-    font-size: 12px;
+    font-size: 14px;
     width: auto;
     max-width: 100%;
     overflow: auto;
@@ -246,6 +251,7 @@ $line-space: 22px;
 
     &>p {
       margin: 10px 0;
+      
     }
   }
 
