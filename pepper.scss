@@ -1,6 +1,11 @@
 $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
 
 .markdown-body {
+
+  background: -webkit-linear-gradient(top, transparent 19px, #ececec 20px), -webkit-linear-gradient(left, transparent 19px, #ececec 20px);
+  background-size: 20px 20px;
+
+
   // 文字
   $fontColor: #4f4f4f;
 
@@ -32,7 +37,7 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   $yinBack2Color: #f3f4ff;
 
   $lrPadding: 0 2px; // 左右间距
-  $line-space: 22px; // 文字间距
+  $line-space: 20px; // 文字上下间距
   // 文字大小
   $h1size: 22px;
   $h2size: 18px;
@@ -42,7 +47,7 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
 
   // body基础设置
   word-break: break-word;
-  line-height: 1.75;
+  line-height: 1.5;
   font-weight: 400;
   font-size: 14px;
   overflow-x: hidden;
@@ -56,16 +61,24 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   h5,
   h6 {
     line-height: 1;
-    margin-top: 35px;
-    margin-bottom: 0px;
-    padding-bottom: 5px;
+    margin-top: 1.7em; //35px
+    margin-bottom: 15px;
+    // padding-bottom: 5px;
   }
 
   h1 {
     font-size: $h1size;
     color: $h1Color;
+    position:relative;
+
     // 创建计数器
     counter-reset: h2counter;
+    text-align: center;
+    &::after{
+      content: "」";
+      position: absolute;
+      transform: rotate(90deg);
+    }
   }
 
 
@@ -73,8 +86,6 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   h2 {
     font-size: $h2size;
     color: $h2Color;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
     counter-reset: h3counter;
   }
 
@@ -141,7 +152,7 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
 
   p {
     line-height: inherit;
-    margin-top: $line-space;
+    margin-top: 10px;
     margin-bottom: $line-space;
 
   }
@@ -359,17 +370,17 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
   }
 
-  @media (max-width: 720px) {
-    h1 {
-      font-size: 24px;
-    }
+  // @media (max-width: 720px) {
+  //   h1 {
+  //     font-size: 24px;
+  //   }
 
-    h2 {
-      font-size: 20px;
-    }
+  //   h2 {
+  //     font-size: 20px;
+  //   }
 
-    h3 {
-      font-size: 18px;
-    }
-  }
+  //   h3 {
+  //     font-size: 18px;
+  //   }
+  // }
 }

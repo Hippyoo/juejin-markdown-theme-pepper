@@ -16,4 +16,5 @@
 
 ## 代码主题
 
+highlight: agate
 highlight: atom-one-dark
