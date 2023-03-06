@@ -40,9 +40,7 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   $h4size: 14px;
   $h5size: 14px; // h6同
 
-  // 创建计数器
-  counter-reset: h2counter;
-
+  // body基础设置
   word-break: break-word;
   line-height: 1.75;
   font-weight: 400;
@@ -66,6 +64,8 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   h1 {
     font-size: $h1size;
     color: $h1Color;
+    // 创建计数器
+    counter-reset: h2counter;
   }
 
 
