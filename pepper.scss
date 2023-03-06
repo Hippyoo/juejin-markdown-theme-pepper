@@ -1,22 +1,15 @@
 $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
-$line-space: 22px;
-$lrPadding: 0 2px;
 
 .markdown-body {
-  word-break: break-word;
-  line-height: 1.75;
-  font-weight: 400;
-  font-size: 14px;
-  overflow-x: hidden;
-  letter-spacing: 2px;
-
-  color: #4f4f4f;
+  // 文字
+  $fontColor: #4f4f4f;
 
   // 标题
-  $h2Color: #eea20a;
-  $h2ColorBef:#ed8c2c;
-  $h3Color: #555cbe;
-  $h4Color: #4f4f4f;
+  $h1Color: #eea20a;
+  $h2Color: #555cbe;
+  $h2ColorBef: #ed8c2c; // #ed8c2c
+  $h3Color: #4e5399;
+  $h4Color: #4b4b4b;
 
   // 重点
   $strongA: #fa6069;
@@ -26,18 +19,37 @@ $lrPadding: 0 2px;
 
   // 代码高亮及背景
   // c7254e;
-  $heightColor:#4c9800;
+  $heightColor: #4c9800;
   $backHeightColor: #fff;
   // #fff5f5
 
   // a 标签
   $aColor: #4ea1db;
+  $aColorBorder: #a5c7e7;
   $aColorEd: #275b8c;
 
+  // 引用
+  $yinBack2Color: #f3f4ff;
 
+  $lrPadding: 0 2px; // 左右间距
+  $line-space: 22px; // 文字间距
+  // 文字大小
+  $h1size: 22px;
+  $h2size: 18px;
+  $h3size: 16px;
+  $h4size: 14px;
+  $h5size: 14px; // h6同
 
+  // 创建计数器
+  counter-reset: h2counter;
 
-
+  word-break: break-word;
+  line-height: 1.75;
+  font-weight: 400;
+  font-size: 14px;
+  overflow-x: hidden;
+  letter-spacing: 2px;
+  color: $fontColor;
 
   h1,
   h2,
@@ -52,81 +64,80 @@ $lrPadding: 0 2px;
   }
 
   h1 {
-    font-size: 22px;
+    font-size: $h1size;
+    color: $h1Color;
   }
 
 
   // 标题1
   h2 {
-    counter-reset: h2counter;
-    font-size: 20px;
+    font-size: $h2size;
     color: $h2Color;
     padding-bottom: 10px;
     margin-bottom: 15px;
-    // border-bottom: 1px solid #ececec;
+    counter-reset: h3counter;
   }
 
   // 标题1.1
   h3 {
-    counter-reset: h3counter;
-    font-size: 18px;
+    font-size: $h3size;
     color: $h3Color;
-    // padding-bottom: 0;
+    counter-reset: h4counter;
   }
 
   // 标题（1）
   h4 {
-    counter-reset: h4counter;
-    font-size: 16px;
+    font-size: $h4size;
     color: $h4Color;
   }
 
   h5,
   h6 {
-    font-size: 14px;
+    font-size: $h5size;
     color: $h4Color;
   }
 
-  // 模拟
-
-  h2:before {
-    color: $h2ColorBef;
-    counter-increment: h2counter;
-    content: counter(h2counter)"\0000a0\0000a0\0000a0";
-  }
-
-  h3:before {
-    counter-increment: h3counter;
-    content: "🍲\0000a0\0000a0" counter(h2counter) "." counter(h3counter);
-  }
-
-  h4:before {
-    content: "( 🍲 )";
-  }
-
-  // ❤
-  h5:before {
-    content: "\0000a0\0000a0🍦"
-  }
-
-  h6:before {
-    content: "( 🍦 )"
-  }
-
-  // h2::before,
+  /* 标签前的小标  🍲  \0000a0  ❤ */
+  h2::before,
   h3::before,
   h4::before,
   h5::before,
   h6::before {
-    width: 70px;
+    min-width: 50px;
     display: inline-block;
+    padding-right: 15px;
   }
 
-  // 模拟结束
+  h2:before {
+    counter-increment: h2counter;
+    content: counter(h2counter);
+  }
 
+  h3:before {
+    counter-increment: h3counter;
+    content: counter(h2counter) "." counter(h3counter);
 
+  }
 
+  h4:before {
+    counter-increment: h4counter;
+    content: "（" counter(h4counter) "）";
+    margin-left: -5px;
+    padding-right: 20px;
+  }
 
+  h5:before {
+    content: "❥";
+    text-align: center;
+
+  }
+
+  h6:before {
+    content: "(❥)";
+    text-align: center;
+  }
+
+  /* 小标结束 */
 
   p {
     line-height: inherit;
@@ -138,6 +149,8 @@ $lrPadding: 0 2px;
   strong {
     color: $strongA;
     padding: $lrPadding;
+    font-weight: normal;
+
   }
 
   em {
@@ -146,14 +159,34 @@ $lrPadding: 0 2px;
     padding: $lrPadding;
 
     strong {
-      color: $strongB;
+      color: $h3Color;
       padding: 0;
+
+      &::after {
+        content: "」";
+      }
+
+      &::before {
+        content: "「";
+      }
     }
   }
 
+  del {
+    color: $fontColor;
+  }
 
   img {
     max-width: 100%;
+    border: 1px solid #f2f2f2;
+    border-left: 1px solid #d9d9d9;
+    border-radius: 2px;
+    box-shadow: 5px 8px 9px -1px rgb(0 0 0 / 5%),
+      0 3px 5px 0 rgb(0 0 0 / 6%),
+      2px 3px 4px -1px rgb(0 0 0 / 4%);
+    margin-right: 3px;
+    padding: 8px;
+    vertical-align: bottom;
   }
 
   hr {
@@ -166,40 +199,37 @@ $lrPadding: 0 2px;
   }
 
   code {
-    font-family: $monospace-font;
     word-break: break-word;
     border-radius: 2px;
     overflow-x: auto;
-    background-color: $backHeightColor;
-    color:$heightColor;
-    // font-size: 0.87em;
-    padding: 0.065em 0.4em;
+    color: $heightColor;
+    padding: $lrPadding;
   }
 
-  
-
   pre {
-    font-family: $monospace-font;
     overflow: auto;
     position: relative;
     line-height: 1.75;
 
     >code {
-      font-size: 14px;
+      font-size: 12px;
+      font-family: inherit;
+      color: $fontColor;
+      letter-spacing: 1px;
       padding: 15px 12px;
       margin: 0;
       word-break: normal;
       display: block;
       overflow-x: auto;
-      color: #333;
       background: #f8f8f8;
+      padding-left: 2em;
     }
   }
 
   a {
     text-decoration: none;
     color: $aColor;
-    border-bottom: 1px solid #d1e9ff;
+    border-bottom: 1px solid $aColorBorder;
 
     &:hover,
     &:active {
@@ -218,7 +248,7 @@ $lrPadding: 0 2px;
 
   thead {
     background: #eff3f5;
-    color: #000;
+    color: $h4Color;
     text-align: left;
   }
 
@@ -241,8 +271,8 @@ $lrPadding: 0 2px;
     color: #666;
     padding: 1px 23px;
     margin: 22px 0;
-    border-left: 4px solid #cbcbcb;
-    background-color: #f8f8f8;
+    border-left: 4px solid $h3Color;
+    background-color: $yinBack2Color;
 
     &::after {
       display: block;
@@ -251,31 +281,35 @@ $lrPadding: 0 2px;
 
     &>p {
       margin: 10px 0;
-      
+
+      &>code {
+        font-family: inherit;
+        text-shadow: 0px 0px 1px #d7ffe5;
+      }
     }
   }
 
   ol,
   ul {
     padding-left: 28px;
+    margin-top: 25px;
 
     li {
-      margin-bottom: 0;
+      margin-bottom: 20px;
       list-style: inherit;
 
       & .task-list-item {
         list-style: none;
-
-        ul,
-        ol {
-          margin-top: 0;
-        }
       }
     }
 
     ul,
     ol {
-      margin-top: 3px;
+      margin-top: 7px;
+
+      li {
+        margin-bottom: 7px;
+      }
     }
   }
 
@@ -300,13 +334,9 @@ $lrPadding: 0 2px;
     border-radius: 2px;
 
     &::before {
-      
+
       content: "";
       position: absolute;
-      // top: 0;
-      // left: 0;
-      // right: 0;
-      // bottom: 0;
       width: inherit;
       height: inherit;
       background: #FFF;
@@ -316,34 +346,17 @@ $lrPadding: 0 2px;
       z-index: 1;
     }
 
-    // &::after {
-    //   border: none;
-    //   width: 15px;
-    //   height: 15px;
-    //   display: inline-block;
-    //   visibility: visible;
-    //   padding-left: 0px;
-    //   text-align: center;
-    //   content: ' ';
-    //   border-radius: 1px;
-    //   color: $strongA;
-    //   background-color: #fff;
-    //   border: #ffba92 solid 1px;
-    // }
 
     &:checked::after {
       position: absolute;
       top: -10px;
       left: 0px;
-      // right: 0;
-      // bottom: 0;
       content: "✓";
       color: $strongA;
       font-size: 22px;
       font-weight: bold;
       z-index: 2;
     }
-
   }
 
   @media (max-width: 720px) {
