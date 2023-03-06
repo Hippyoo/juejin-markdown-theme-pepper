@@ -12,9 +12,11 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   // 标题
   $h1Color: #eea20a;
   $h2Color: #555cbe;
-  $h2ColorBef: #ed8c2c; // #ed8c2c
   $h3Color: #4e5399;
   $h4Color: #4b4b4b;
+
+  $h1Colorlight: #ffb018;
+  $h1Colorblack: #ed8c2c; // #ed8c2c
 
   // 重点
   $strongA: #fa6069;
@@ -54,7 +56,7 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   letter-spacing: 2px;
   color: $fontColor;
 
-  h1,
+  // h1,s
   h2,
   h3,
   h4,
@@ -69,15 +71,38 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   h1 {
     font-size: $h1size;
     color: $h1Color;
-    position:relative;
+    position: relative;
+    margin-top: 1.8em;
+    margin-bottom: 1.8em;
+    text-align: center;
 
     // 创建计数器
     counter-reset: h2counter;
-    text-align: center;
-    &::after{
-      content: "」";
+
+    $h1width:30px;
+    $h1height:28px;
+
+
+    &::before {
+      content: "";
       position: absolute;
-      transform: rotate(90deg);
+      left: 0;
+      bottom: -10px;
+      width: $h1width;
+      height:$h1height;
+      border-bottom: 3px solid $h1Colorlight;
+      border-left: 3px solid $h1Colorblack;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -10px;
+      width: $h1width;
+      height: $h1height;
+      border-top: 3px solid $h1Colorlight;
+      border-right: 3px solid $h1Colorblack;
     }
   }
 
@@ -114,7 +139,7 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
   h4::before,
   h5::before,
   h6::before {
-    min-width: 50px;
+    min-width: 40px;
     display: inline-block;
     padding-right: 15px;
   }
@@ -370,17 +395,17 @@ $monospace-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
   }
 
-  // @media (max-width: 720px) {
-  //   h1 {
-  //     font-size: 24px;
-  //   }
+  @media (max-width: 720px) {
+    h1 {
+      font-size: 18px;
+    }
 
-  //   h2 {
-  //     font-size: 20px;
-  //   }
+    h2 {
+      font-size: 16px;
+    }
 
-  //   h3 {
-  //     font-size: 18px;
-  //   }
-  // }
+    h3 {
+      font-size: 14px;
+    }
+  }
 }
