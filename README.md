@@ -1,4 +1,4 @@
-# juejin 默认主题
+## juejin 默认主题
 
 主题列表：https://github.com/xitu/juejin-markdown-themes
 
@@ -18,3 +18,6 @@
 
 highlight: agate
 highlight: atom-one-dark
+
+## 运行
+npx juejin-theme-devtool pepper.scss
